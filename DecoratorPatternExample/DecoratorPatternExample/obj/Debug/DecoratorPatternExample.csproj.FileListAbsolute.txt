@@ -1,0 +1,7 @@
+C:\Users\kelem\source\repos\DecoratorPatternExample\DecoratorPatternExample\bin\Debug\DecoratorPatternExample.exe.config
+C:\Users\kelem\source\repos\DecoratorPatternExample\DecoratorPatternExample\bin\Debug\DecoratorPatternExample.exe
+C:\Users\kelem\source\repos\DecoratorPatternExample\DecoratorPatternExample\bin\Debug\DecoratorPatternExample.pdb
+C:\Users\kelem\source\repos\DecoratorPatternExample\DecoratorPatternExample\obj\Debug\DecoratorPatternExample.csprojAssemblyReference.cache
+C:\Users\kelem\source\repos\DecoratorPatternExample\DecoratorPatternExample\obj\Debug\DecoratorPatternExample.csproj.CoreCompileInputs.cache
+C:\Users\kelem\source\repos\DecoratorPatternExample\DecoratorPatternExample\obj\Debug\DecoratorPatternExample.exe
+C:\Users\kelem\source\repos\DecoratorPatternExample\DecoratorPatternExample\obj\Debug\DecoratorPatternExample.pdb

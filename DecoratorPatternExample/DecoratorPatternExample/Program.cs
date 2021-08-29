@@ -10,7 +10,81 @@ namespace DecoratorPatternExample
     {
         static void Main(string[] args)
         {
+            //Creating Membership for SilverMembership type
+            IMembership silverMembership = new SilverMembership();
 
+            // Adding annual free to the silver membership
+            IMembership annualFeeDecorator = new AnnualFeeDecorator(silverMembership);
+
+            // Adding parking fee to the silver membership
+            IMembership parkingFeeDecorator = new ParkingFeeDecorator(annualFeeDecorator);
+
+            // Adding free reservation cancelation benefit to the silver membership
+            IMembership freeCancelationBenefitDecorator = new CacelationBenefitDecorator(parkingFeeDecorator);
+
+            Console.WriteLine("Silver Membership Benefits");
+            Console.WriteLine(freeCancelationBenefitDecorator.GetBenefits());
+
+            Console.WriteLine("Silver Membership Fee: ");
+            Console.WriteLine(freeCancelationBenefitDecorator.GetFee());
+
+            Console.WriteLine();
+            //Creating Membership for GoldMembership type
+            IMembership goldMembership = new GoldMembership();
+
+            // Adding annual fee to the gold membership
+            IMembership goldAnnualFeeDecorator = new AnnualFeeDecorator(goldMembership);
+
+            // Adding Initial fee to the gold membership
+            IMembership goldInitialFeeDecorator = new InitialFeeDecorator(goldAnnualFeeDecorator);
+
+            // Adding free reservation cancelation fee to the gold membership
+            IMembership goldFreeCancelationBenefirDecorator = new CacelationBenefitDecorator(goldInitialFeeDecorator);
+
+            // Adding free shuttle benefit to the gold membership
+            IMembership goldFreeshuttleBenefitDecorator = new ShuttleBenefitDecorator(goldFreeCancelationBenefirDecorator);
+
+            // Adding free meal benefit to the gold membership
+            IMembership goldMealBenefitDecorator = new MealBenefitDecorator(goldFreeshuttleBenefitDecorator);
+
+
+            Console.WriteLine("Gold Membership Benefits");
+            Console.WriteLine(goldMealBenefitDecorator.GetBenefits());
+
+            Console.WriteLine("Gold Membership Fee: ");
+            Console.WriteLine(goldMealBenefitDecorator.GetFee());
+
+
+            Console.WriteLine();
+            //Creating Membership for Platinium type
+            IMembership platiniumMembership = new PlatinumMembership();
+
+            // Adding annual fee to the platinium membership
+            IMembership platiniumAnnualFeeDecorator = new AnnualFeeDecorator(platiniumMembership);
+
+            // Adding Initial fee to the platinium membership
+            IMembership platiniumInitialFeeDecorator = new InitialFeeDecorator(platiniumAnnualFeeDecorator);
+
+            // Adding free reservation cancelation fee to the platinium membership
+            IMembership platiniumFreeCancelationBenefirDecorator = new CacelationBenefitDecorator(platiniumInitialFeeDecorator);
+
+            // Adding free shuttle benefit to the platinium membership
+            IMembership platiniumFreeshuttleBenefitDecorator = new ShuttleBenefitDecorator(platiniumFreeCancelationBenefirDecorator);
+
+            // Adding free meal benefit to the platinium membership
+            IMembership platiniumMealBenefitDecorator = new MealBenefitDecorator(platiniumFreeshuttleBenefitDecorator);
+
+            // Adding free tour guide benefit to the platinium membership
+            IMembership platiniumTourGuideBenefitDecorator = new FreeTourGuideBenefitDecorator(platiniumMealBenefitDecorator);
+
+
+            Console.WriteLine("Platinium Membership Benefits");
+            Console.WriteLine(platiniumTourGuideBenefitDecorator.GetBenefits());
+
+            Console.WriteLine("Platinium Membership Fee: ");
+            Console.WriteLine(platiniumTourGuideBenefitDecorator.GetFee());
+
+            Console.ReadKey();
         }
     }
 
@@ -25,7 +99,7 @@ namespace DecoratorPatternExample
         public double fee { get; set; }
         public string GetBenefits()
         {
-            return "30 % Reservation discount for each person \n";
+            return "\n 30 % Reservation discount for each person \n";
         }
 
         public double GetFee()
@@ -39,7 +113,7 @@ namespace DecoratorPatternExample
         public double fee { get; set; }
         public string GetBenefits()
         {
-            return "15 % Reservation discount for each person \n";
+            return "\n 15 % Reservation discount for each person \n";
         }
 
         public double GetFee()
@@ -53,7 +127,7 @@ namespace DecoratorPatternExample
         public double fee { get; set; }
         public string GetBenefits()
         {
-            return "40 % Reservation discount for each person \n";
+            return "\n 40 % Reservation discount for each person \n";
         }
 
         public double GetFee()
@@ -88,7 +162,7 @@ namespace DecoratorPatternExample
 
         public override double GetFee()
         {
-            return base.GetFee() + 10 ;
+            return base.GetFee() + 100 ;
         }
     }
 
@@ -98,7 +172,7 @@ namespace DecoratorPatternExample
 
         public override double GetFee()
         {
-            return base.GetFee() + 5.50;
+            return base.GetFee() + 155.50;
         }
     }
 
@@ -108,7 +182,7 @@ namespace DecoratorPatternExample
 
         public override double GetFee()
         {
-            return base.GetFee() + 7;
+            return base.GetFee() + 100;
         }
     }
 
@@ -139,6 +213,16 @@ namespace DecoratorPatternExample
         public override string GetBenefits()
         {
             return base.GetBenefits() + "\n Free shuttle from and to airport, during shopping. \n";
+        }
+    }
+
+    public class FreeTourGuideBenefitDecorator : MembershipDecorator
+    {
+        public FreeTourGuideBenefitDecorator(IMembership membership) : base(membership) { }
+
+        public override string GetBenefits()
+        {
+            return base.GetBenefits() + "\n Free tour guide for every at historical travel and events. \n";
         }
     }
 
